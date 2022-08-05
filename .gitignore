@@ -1,2 +1,3 @@
 venv/
-.pckl
+__pycache__/
+lista.pckl

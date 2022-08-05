@@ -3,6 +3,7 @@ import pickle
 import re
 import helpers
 
+
 class Client:
     """Objeto que representara a cada cliente"""
     
@@ -17,8 +18,13 @@ class Client:
 
 class Manager:
     """Clase con los metodos necesarios para realizar las operaciones indicadas en el menu del programa"""
-
-    clients = [] # Se crea la variable contenedora de clientes
+    
+    # Carga de listado guardado de clientes
+    try:
+        with open("lista.pckl","rb") as f:
+            clients =  pickle.load(f)
+    except:
+        clients = [] # Se crea la variable contenedora de clientes
 
     @staticmethod
     def show_clients():
@@ -119,13 +125,6 @@ class Manager:
             Manager.clients.pop(i)
             return True
         return False
-
-
-marta = Client("Marta", "Sanchez","15J") # Agregando objetos al gestor
-Manager.clients.append(marta)
-Manager.clients.append(Client("Raul","Fernandez", "23G"))
-Manager.clients.append(Client("Nicolas","Gomez","37H"))
-Manager.clients.append(Client("Maximiliano","Madrid","25U"))
 
 if __name__ == "__main__": # Test
     import doctest
